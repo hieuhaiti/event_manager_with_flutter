@@ -27,7 +27,7 @@ class _EventDetailViewState extends State<EventDetailView> {
   Future<void> pickDateTime({required bool isStart}) async {
     final pickedDate = await showDatePicker(
       context: context,
-      initialDate: isStart ? widget.event.startDate : widget.event.endDate,
+      initialDate: isStart ? widget.event.startTime : widget.event.endTime,
       firstDate: DateTime(2021),
       lastDate: DateTime(2025),
     );
@@ -37,23 +37,23 @@ class _EventDetailViewState extends State<EventDetailView> {
     final pickedTime = await showTimePicker(
       context: context,
       initialTime: TimeOfDay.fromDateTime(
-          isStart ? widget.event.startDate : widget.event.endDate),
+          isStart ? widget.event.startTime : widget.event.endTime),
     );
 
     if (pickedTime == null) return;
     if (!mounted) return;
     setState(() {
       if (!isStart) return;
-      widget.event.startDate = DateTime(
+      widget.event.startTime = DateTime(
         pickedDate.year,
         pickedDate.month,
         pickedDate.day,
         pickedTime.hour,
         pickedTime.minute,
       );
-      if (widget.event.startDate.isAfter(widget.event.endDate)) {
-        widget.event.endDate =
-            widget.event.startDate.add(const Duration(hours: 1));
+      if (widget.event.startTime.isAfter(widget.event.endTime)) {
+        widget.event.endTime =
+            widget.event.startTime.add(const Duration(hours: 1));
       }
     });
   }
@@ -73,6 +73,27 @@ class _EventDetailViewState extends State<EventDetailView> {
     Navigator.of(context).pop();
   }
 
+  // Future<void> showDeleteDialog() async {
+  //   await showDialog(
+  //     context: context,
+  //     builder: (context) {
+  //       return AlertDialog(
+  //         title: const Text('Delete Event'),
+  //         content: const Text('Are you sure you want to delete this event?'),
+  //         actions: [
+  //           TextButton(
+  //             onPressed: () => Navigator.of(context).pop(),
+  //             child: const Text('Cancel'),
+  //           ),
+  //           TextButton(
+  //             onPressed: deleteEvent,
+  //             child: const Text('Delete'),
+  //           ),
+  //         ],
+  //       );
+  //     },
+  //   );
+  // }
 
   @override
   Widget build(BuildContext context) {

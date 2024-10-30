@@ -8,9 +8,7 @@ class EventModel {
   bool isAllDay;
   String subject;
   String? description;
-  String? location;
   String? recurrenceRule;
-  String? color;
   EventModel({
     this.id,
     required this.startTime,
@@ -18,9 +16,7 @@ class EventModel {
     this.isAllDay = false,
     this.subject = '',
     this.description,
-    this.location,
     this.recurrenceRule,
-    this.color,
   });
 
   EventModel copyWith({
@@ -30,9 +26,7 @@ class EventModel {
     bool? isAllDay,
     String? subject,
     String? description,
-    String? location,
     String? recurrenceRule,
-    String? color,
   }) {
     return EventModel(
       id: id ?? this.id,
@@ -41,9 +35,7 @@ class EventModel {
       isAllDay: isAllDay ?? this.isAllDay,
       subject: subject ?? this.subject,
       description: description ?? this.description,
-      location: location ?? this.location,
       recurrenceRule: recurrenceRule ?? this.recurrenceRule,
-      color: color ?? this.color,
     );
   }
 
@@ -55,9 +47,7 @@ class EventModel {
       'isAllDay': isAllDay,
       'subject': subject,
       'description': description,
-      'location': location,
       'recurrenceRule': recurrenceRule,
-      'color': color,
     };
   }
 
@@ -68,12 +58,8 @@ class EventModel {
       endTime: DateTime.fromMillisecondsSinceEpoch(map['endTime'] as int),
       isAllDay: map['isAllDay'] as bool,
       subject: map['subject'] as String,
-      description: map['description'] as String,
-      location: map['location'] as String,
-      recurrenceRule: map['recurrenceRule'] != null
-          ? map['recurrenceRule'] as String
-          : null,
-      color: map['color'] != null ? map['color'] as String : null,
+      description: map['description'] != null ? map['description'] as String : null,
+      recurrenceRule: map['recurrenceRule'] != null ? map['recurrenceRule'] as String : null,
     );
   }
 
@@ -84,34 +70,31 @@ class EventModel {
 
   @override
   String toString() {
-    return 'EventModel(id: $id, startTime: $startTime, endTime: $endTime, isAllDay: $isAllDay, subject: $subject, description: $description, location: $location, recurrenceRule: $recurrenceRule, color: $color)';
+    return 'EventModel(id: $id, startTime: $startTime, endTime: $endTime, isAllDay: $isAllDay, subject: $subject, description: $description, recurrenceRule: $recurrenceRule)';
   }
 
   @override
   bool operator ==(covariant EventModel other) {
     if (identical(this, other)) return true;
 
-    return other.id == id &&
-        other.startTime == startTime &&
-        other.endTime == endTime &&
-        other.isAllDay == isAllDay &&
-        other.subject == subject &&
-        other.description == description &&
-        other.location == location &&
-        other.recurrenceRule == recurrenceRule &&
-        other.color == color;
+    return
+      other.id == id &&
+      other.startTime == startTime &&
+      other.endTime == endTime &&
+      other.isAllDay == isAllDay &&
+      other.subject == subject &&
+      other.description == description &&
+      other.recurrenceRule == recurrenceRule;
   }
 
   @override
   int get hashCode {
     return id.hashCode ^
-        startTime.hashCode ^
-        endTime.hashCode ^
-        isAllDay.hashCode ^
-        subject.hashCode ^
-        description.hashCode ^
-        location.hashCode ^
-        recurrenceRule.hashCode ^
-        color.hashCode;
+      startTime.hashCode ^
+      endTime.hashCode ^
+      isAllDay.hashCode ^
+      subject.hashCode ^
+      description.hashCode ^
+      recurrenceRule.hashCode;
   }
 }

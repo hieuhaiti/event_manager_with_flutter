@@ -16,17 +16,20 @@ class EventDataSource extends CalendarDataSource {
     ///
     DateTime getStartTime(int index) {
       EventModel item = appointments!.elementAt(index);
-      return item.startDate;
+      return item.startTime;
     }
+
     DateTime getEndTime(int index) {
       EventModel item = appointments!.elementAt(index);
-      return item.endDate;
+      return item.endTime;
     }
+
     // get subject
     String getSubject(int index) {
       EventModel event = appointments!.elementAt(index);
       return event.subject;
     }
+
     // get description
     String? getNotes(int index) {
       EventModel event = appointments!.elementAt(index);
@@ -48,7 +51,9 @@ class EventDataSource extends CalendarDataSource {
     // get color
     Color getColor(int index) {
       EventModel event = appointments!.elementAt(index);
-      return event.isAllDay ? const Color.fromARGB(255, 3, 237, 11) : super.getColor(index);
+      return event.isAllDay
+          ? const Color.fromARGB(255, 3, 237, 11)
+          : super.getColor(index);
     }
   }
 }
