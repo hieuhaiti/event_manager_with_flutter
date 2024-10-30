@@ -19,7 +19,7 @@ class MainApp extends StatelessWidget {
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
       ],
-      supportedLocales: [Locale("en", ""), Locale("vi")],
+      supportedLocales: [Locale("en"), Locale("vi")],
       locale: Locale("en"),
       home: EventView(),
     );
