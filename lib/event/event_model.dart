@@ -4,13 +4,9 @@ import 'dart:convert';
 class EventModel {
   String? id;
   DateTime startDate;
-
-  /// The end date and time of the event.
-  ///
-  /// This property represents the date and time when the event is scheduled to end.
   DateTime endDate;
   bool isAllDay;
-  String? subject;
+  String subject;
   String? description;
   String? recurrenceRule;
   EventModel({
